@@ -17,9 +17,6 @@
     dates = "05:00";
   };
 
-  # Label Generations
-  system.nixos.label = (builtins.concatStringsSep "-" (builtins.sort (x: y: x < y) config.system.nixos.tags)) + config.system.nixos.version + "-SHA:${inputs.self.shortRev}";
-
   # Collect garbage
   nix.gc = {
     automatic = true;
