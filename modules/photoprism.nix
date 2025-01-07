@@ -11,13 +11,12 @@
     address = "0.0.0.0";
     passwordFile = "/home/proxmox/.secrets/photoprism"
     settings = {
-      PHOTOPRISM_ADMIN_USER = "admin";
-      PHOTOPRISM_ADMIN_PASSWORD = "testing";
+      PHOTOPRISM_ADMIN_USER = "photoprismAdmin";
       PHOTOPRISM_DEFAULT_LOCALE = "en";
       PHOTOPRISM_DATABASE_DRIVER = "mysql";
       PHOTOPRISM_DATABASE_NAME = "photoprism";
       PHOTOPRISM_DATABASE_SERVER = "/run/mysqld/mysqld.sock";
-      PHOTOPRISM_DATABASE_USER = "photoprism";
+      PHOTOPRISM_DATABASE_USER = "photoprismUser";
       PHOTOPRISM_SITE_URL = "http://photoprism.tail590ac.ts.net:2342";
       PHOTOPRISM_SITE_TITLE = "My PhotoPrism";
     };
