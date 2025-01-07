@@ -5,12 +5,12 @@
   imports =
     [ 
       # --- Services ---
-      ./general.nix
+      ./general-applications.nix
       #./photoprism.nix
       #./nextcloud.nix
 
       # --- System Configuration ---
-      ./system/nix-package-configuration.nix
+      ./nix-package-configuration.nix
     ];
 
   system.stateVersion = "25.05"; 
