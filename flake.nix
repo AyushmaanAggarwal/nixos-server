@@ -14,6 +14,11 @@
         modules = [
           (nixpkgs + "/nixos/modules/virtualisation/lxc-container.nix")
           ./modules/configuration.nix
+          {
+            _module.args = {
+              inherit inputs;
+            };
+          }
         ];
       };
     };
