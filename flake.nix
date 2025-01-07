@@ -9,7 +9,7 @@
     let
       system = "x86_64-linux";
     in { 
-      nixosConfigurations.ayu = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
           (nixpkgs + "/nixos/modules/virtualisation/lxc-container.nix")
