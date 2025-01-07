@@ -13,4 +13,6 @@
       # --- System Configuration ---
       ./system/nix-package-configuration.nix
     ];
+
+  system.stateVersion = "25.05"; 
 }
