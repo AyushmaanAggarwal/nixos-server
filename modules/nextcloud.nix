@@ -13,6 +13,10 @@
     };
     extraAppsEnable = true;
 
-    config.adminpassFile = "/home/proxmox/.secrets/nextcloud-admin-pass";
+    database.createLocally = true;
+    config = {
+      dbtype = "pgsql";
+      adminpassFile = "/home/proxmox/.secrets/nextcloud-admin-pass";
+    };
   };
 }
