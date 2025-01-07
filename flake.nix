@@ -12,6 +12,7 @@
       nixosConfigurations.ayu = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
+          <nixpkgs/nixos/modules/virtualization/lxc-container.nix>
           ./modules/configuration.nix
         ];
       };
