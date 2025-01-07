@@ -12,8 +12,8 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.proxmox = { 
-    isNormalUser = true; description = "Proxmox User"; 
+  users.users.photoprism = { 
+    isNormalUser = true; description = "Photoprism User"; 
     extraGroups = [ "networkmanager" "wheel" ]; 
     packages = with pkgs; [
       neovim
