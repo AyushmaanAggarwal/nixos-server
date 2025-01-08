@@ -2,9 +2,8 @@
 { config, pkgs, ... }:
 {
   # -------------------- 
-  # Various services
+  # Nextcloud Password File
   # -------------------- 
-
   environment.etc."secrets/nextcloud-admin-pass" = {
     reminder to fill in secret below
     text = ''
@@ -14,14 +13,22 @@
     group = "nextcloud";
     mode = "0400";
   };
- 
+
+  # -------------------- 
+  # Caddy SSL Cert
+  # -------------------- 
   services.caddy = {
     enable = true;
     virtualHosts."nextcloud.tail590ac.ts.net".extraConfig = ''
       reverse_proxy 127.0.0.1:8080
     '';
   };
+  services.tailscale.permitCertUid = "caddy";
   services.nginx.virtualHosts."localhost".listen = [ { addr = "127.0.0.1"; port = 8080; } ];
+
+  # -------------------- 
+  # Nextcloud Configuration
+  # -------------------- 
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud30;
