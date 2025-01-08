@@ -5,9 +5,14 @@
   # Various services
   # -------------------- 
 
-  users.users.nextcloud = { 
-    isNormalUser = true; 
-    description = "Nextcloud User"; 
+  environment.etc."secrets/nextcloud-admin-pass" = {
+    reminder to fill in secret below
+    text = ''
+    <fill in secret>
+    '';
+    user = nextcloud;
+    group = nextcloud;
+    mode = "0400";
   };
  
   services.nextcloud = {
