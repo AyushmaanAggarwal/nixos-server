@@ -10,8 +10,8 @@
     text = ''
     <fill in secret>
     '';
-    user = nextcloud;
-    group = nextcloud;
+    user = "nextcloud";
+    group = "nextcloud";
     mode = "0400";
   };
  
