@@ -15,10 +15,17 @@
     mode = "0400";
   };
  
+  services.caddy = {
+    enable = true;
+    virtualHosts."nextcloud.tail590ac.ts.net".extraConfig = ''
+      reverse_proxy http://127.0.0.1:8080
+    '';
+  };
+  services.nginx.virtualHosts."localhost".listen = [ { addr = "127.0.0.1"; port = 8080; } ];
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud30;
-    hostName = "nextcloud.tail590ac.ts.net";
+    hostName = "127.0.0.1";
     extraApps = {
       inherit (config.services.nextcloud.package.packages.apps) news contacts calendar tasks;
     };
