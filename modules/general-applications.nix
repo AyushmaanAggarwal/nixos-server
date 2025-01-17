@@ -20,6 +20,13 @@
     };
   };
 
+  # Disable bad systemd units
+  systemd.suppressedSystemUnits = [
+    #"dev-mqueue.mount"
+    "sys-kernel-debug.mount"
+    #"sys-fs-fuse-connections.mount"
+  ];
+
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.proxmox = { 
