@@ -15,6 +15,6 @@
       ./nix-package-configuration.nix
       ./scripts.nix
     ];
-
+  networking.hostName = "nixos-server";
   system.stateVersion = "25.05"; 
 }
