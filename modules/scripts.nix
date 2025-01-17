@@ -10,7 +10,7 @@
       '';
       mode = "0555";
     }; 
-    "scripts/ssh-key" = {
+    "scripts/nixos-update" = {
       text = ''
       pushd /home/nixos > /dev/null
       nix flake update --commit-lock-file
