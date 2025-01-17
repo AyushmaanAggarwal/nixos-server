@@ -8,6 +8,8 @@
       ./general-applications.nix
       #./photoprism.nix
       #./nextcloud.nix
+      #./immich.nix
+      #./etesync.nix
 
       # --- System Configuration ---
       ./nix-package-configuration.nix
