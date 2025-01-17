@@ -12,9 +12,9 @@
     }; 
     "scripts/nixos-update" = {
       text = ''
-      pushd /home/nixos > /dev/null
+      pushd /etc/nixos > /dev/null
       nix flake update --commit-lock-file
-      nixos-rebuild switch --upgrade --flake /home/ayushmaan/.dotfiles/system/
+      nixos-rebuild switch --upgrade --flake .
       popd > /dev/null
       '';
       mode = "0544";
