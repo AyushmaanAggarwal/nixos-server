@@ -13,6 +13,7 @@
 
       # --- System Configuration ---
       ./nix-package-configuration.nix
+      ./scripts.nix
     ];
 
   system.stateVersion = "25.05"; 
