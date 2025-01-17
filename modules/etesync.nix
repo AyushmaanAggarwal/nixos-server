@@ -11,7 +11,7 @@
         allowed_host2 = "etebase.tail590ac.ts.net";
         allowed_host1 = "127.0.0.1";
       };
-      global.secret_file = "/home/etebase-server/.secret_file";
+      global.secret_file = "/var/lib/etebase-server/secret_file";
     };
   };
 
