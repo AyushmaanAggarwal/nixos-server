@@ -24,7 +24,6 @@
     enable = true;
     virtualHosts."etebase.tail590ac.ts.net".extraConfig = ''
       reverse_proxy 127.0.0.1:8001
-        header_up Host 8001
     '';
   };
   services.tailscale.permitCertUid = "caddy";
