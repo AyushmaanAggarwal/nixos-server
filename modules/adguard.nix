@@ -10,14 +10,6 @@
     "--accept-dns=false" # Ensure tailscale doesn't interfere with adguard dns
   ];
 
-  # --------------------
-  # Firewall Settings
-  # --------------------
-  networking.firewall = {
-    allowedTCPPorts = [ 53 ]; # DNS Server
-    allowedUDPPorts = [ 53 ]; # DNS Server
-  };
-
   # -------------------- 
   # Adguard Configuration
   # -------------------- 
@@ -64,7 +56,8 @@
   services.caddy = {
     enable = true;
     virtualHosts."adguard.tail590ac.ts.net".extraConfig = ''
-      reverse_proxy 127.0.0.1:3003
+      reverse_proxy /console 127.0.0.1:3003
+      reverse_proxy /dns-query* 127.0.0.7:53
     '';
  
   };
