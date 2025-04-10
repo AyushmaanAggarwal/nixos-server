@@ -27,11 +27,9 @@
     #"sys-fs-fuse-connections.mount"
   ];
 
-  users.groups.nixadmin = {};
   users.users.nixadmin = { 
-    isSystemUser = true; description = "Nixpkgs User"; 
+    isNormalUser = true; description = "Nixpkgs User"; 
     hashedPassword = "$y$j9T$MsKPpS9seZjFQTddCHJ.g0$WeGelFn99zcnxhW.QdoIC.ZslQLxgBm4a7sQKdfBdC7";
-    group = "nixadmin";
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEa53AGMV87VUquUKyQ2NlqmZiN7OVV438VLUe6hYJU2" ];
   };
 
