@@ -22,6 +22,8 @@
     enable = true;
     host = "127.0.0.1";
     port = 3003;
+    openFirewall = true;
+    mutableSettings = false;
     settings = {
       dns = {
         bind_hosts = [
@@ -34,10 +36,8 @@
       };
       
       bootstrap_dns = [ 
-        "9.9.9.10" 
-        "149.112.112.10" 
-        "2620:fe::10"
-        "2620:fe::fe:10" 
+        "9.9.9.10"
+        "149.112.112.10"
       ];
       filtering = {
         protection_enabled = true;
@@ -48,13 +48,11 @@
           enabled = false;  # Enforcing "Safe search" option for search engines, when possible.
         };
       };
-      # The following notation uses map
-      # to not have to manually create {enabled = true; url = "";} for every filter
-      # This is, however, fully optional
       filters = map(url: { enabled = true; url = url; }) [
         "https://adguardteam.github.io/HostlistsRegistry/assets/filter_9.txt"  # The Big List of Hacked Malware Web Sites
         "https://adguardteam.github.io/HostlistsRegistry/assets/filter_11.txt"  # malicious url blocklist
       ];
+      schema_version = 29;
     };
   };
 
