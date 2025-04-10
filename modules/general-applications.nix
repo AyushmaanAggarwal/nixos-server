@@ -27,6 +27,12 @@
     #"sys-fs-fuse-connections.mount"
   ];
 
+  users.groups.nixadmin = {};
+  users.users.nixadmin = { 
+    isSystemUser = true; description = "Nixpkgs User"; 
+    hashedPassword = "$y$j9T$MsKPpS9seZjFQTddCHJ.g0$WeGelFn99zcnxhW.QdoIC.ZslQLxgBm4a7sQKdfBdC7";
+    group = "nixadmin";
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.proxmox = { 

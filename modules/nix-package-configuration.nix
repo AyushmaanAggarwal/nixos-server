@@ -5,6 +5,8 @@
     experimental-features = [ "nix-command" "flakes" ];
   };
  
+  nix.settings.trusted-users = [ "nixadmin" ];
+
   # Automatically update system
   system.autoUpgrade = {
     enable = true;
