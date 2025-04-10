@@ -1,6 +1,20 @@
 # Applications
 { config, pkgs, ... }:
 {
+  # --------------------
+  # Tailscale Configuration Modifications
+  # -------------------- 
+  services.tailscale.useRoutingFeatures = "server";
+  services.tailscale.extraSetFlags = [ "--advertise-exit-node" ];
+
+  # --------------------
+  # Firewall Settings
+  # --------------------
+  networking.firewall = {
+    allowedTCPPorts = [ 53 ]; # DNS Server
+    allowedUDPPorts = [ 53 ]; # DNS Server
+  };
+
   # -------------------- 
   # Adguard Configuration
   # -------------------- 
@@ -9,23 +23,24 @@
     settings = {
       http = {
         # You can select any ip and port, just make sure to open firewalls where needed
-        address = "127.0.0.1:3000";
+        address = "127.0.0.1:3003";
       };
       dns = {
         bind_hosts = [
           "127.0.0.1"
           "100.65.234.19"
         ];
-        port = "8549";
         upstream_dns = [
-          # Example config with quad9
-          "9.9.9.9#dns.quad9.net"
-          "149.112.112.112#dns.quad9.net"
-          # Uncomment the following to use a local DNS service (e.g. Unbound)
-          # Additionally replace the address & port as needed
-          # "127.0.0.1:5335"
+          "https://dns.quad9.net/dns-query"
         ];
       };
+      
+      bootstrap_dns = [ 
+        "9.9.9.10" 
+        "149.112.112.10" 
+        "2620:fe::10"
+        "2620:fe::fe:10" 
+      ];
       filtering = {
         protection_enabled = true;
         filtering_enabled = true;
@@ -51,7 +66,7 @@
   services.caddy = {
     enable = true;
     virtualHosts."adguard.tail590ac.ts.net".extraConfig = ''
-      reverse_proxy 127.0.0.1:3000
+      reverse_proxy 127.0.0.1:3003
     '';
  
   };
