@@ -20,11 +20,9 @@
   # -------------------- 
   services.adguardhome = {
     enable = true;
+    host = "127.0.0.1";
+    port = 3003;
     settings = {
-      http = {
-        # You can select any ip and port, just make sure to open firewalls where needed
-        address = "127.0.0.1:3003";
-      };
       dns = {
         bind_hosts = [
           "127.0.0.1"
