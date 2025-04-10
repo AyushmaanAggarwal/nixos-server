@@ -48,6 +48,7 @@
     git
     gcc
     wget
+    bash
   ];
 }
 
