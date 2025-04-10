@@ -9,9 +9,14 @@
     settings = {
       http = {
         # You can select any ip and port, just make sure to open firewalls where needed
-        address = "127.0.0.1:3003";
+        address = "127.0.0.1:3000";
       };
       dns = {
+        bind_hosts = [
+          "127.0.0.1"
+          "100.65.234.19"
+        ];
+        port = "8549";
         upstream_dns = [
           # Example config with quad9
           "9.9.9.9#dns.quad9.net"
@@ -46,8 +51,9 @@
   services.caddy = {
     enable = true;
     virtualHosts."adguard.tail590ac.ts.net".extraConfig = ''
-      reverse_proxy 127.0.0.1:3003
+      reverse_proxy 127.0.0.1:3000
     '';
+ 
   };
   services.tailscale.permitCertUid = "caddy";
 }
