@@ -56,8 +56,7 @@
   services.caddy = {
     enable = true;
     virtualHosts."adguard.tail590ac.ts.net".extraConfig = ''
-      reverse_proxy /console 127.0.0.1:3003
-      reverse_proxy /dns-query* 127.0.0.7:53
+      reverse_proxy 127.0.0.1:3003
     '';
  
   };
