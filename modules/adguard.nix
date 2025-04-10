@@ -5,7 +5,10 @@
   # Tailscale Configuration Modifications
   # -------------------- 
   services.tailscale.useRoutingFeatures = "server";
-  services.tailscale.extraSetFlags = [ "--advertise-exit-node" ];
+  services.tailscale.extraSetFlags = [
+    "--advertise-exit-node" 
+    "--accept-dns=false" # Ensure tailscale doesn't interfere with adguard dns
+  ];
 
   # --------------------
   # Firewall Settings
