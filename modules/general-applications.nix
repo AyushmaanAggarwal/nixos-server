@@ -31,6 +31,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.proxmox = { 
     isNormalUser = true; description = "Proxmox User"; 
+    hashedPassword = "$y$j9T$nuV.3iXRhPpKvTXd94fFh.$9g4xyPrktivR.wpwUxT4P69bs0NLLAe2sDWDIjus5c4";
     extraGroups = [ "networkmanager" "wheel" ]; 
     packages = with pkgs; [
       neovim
