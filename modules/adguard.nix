@@ -28,7 +28,6 @@
       dns = {
         bind_hosts = [
           "127.0.0.1"
-          "100.65.234.19"
         ];
 
         upstream_dns = [
