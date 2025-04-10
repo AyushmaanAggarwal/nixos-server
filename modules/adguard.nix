@@ -30,19 +30,19 @@
           "127.0.0.1"
           "100.65.234.19"
         ];
+
         upstream_dns = [
           "https://dns.quad9.net/dns-query"
         ];
+
+        bootstrap_dns = [ 
+          "9.9.9.10"
+          "149.112.112.10"
+        ];
       };
-      
-      bootstrap_dns = [ 
-        "9.9.9.10"
-        "149.112.112.10"
-      ];
       filtering = {
         protection_enabled = true;
         filtering_enabled = true;
-
         parental_enabled = false;  # Parental control-based DNS requests filtering.
         safe_search = {
           enabled = false;  # Enforcing "Safe search" option for search engines, when possible.
