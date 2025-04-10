@@ -27,24 +27,29 @@
     #"sys-fs-fuse-connections.mount"
   ];
 
-  users.users.nixadmin = { 
-    isNormalUser = true; description = "Nixpkgs User"; 
-    hashedPassword = "$y$j9T$MsKPpS9seZjFQTddCHJ.g0$WeGelFn99zcnxhW.QdoIC.ZslQLxgBm4a7sQKdfBdC7";
-    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEa53AGMV87VUquUKyQ2NlqmZiN7OVV438VLUe6hYJU2" ];
-  };
+  # -------------------- 
+  # Users
+  # -------------------- 
+  users.users = {
+    nixadmin = { 
+      isNormalUser = true; description = "Nixpkgs User"; # Used as a minimal remote builder
+      extraGroups = [ "wheel" ];
+      hashedPassword = "$y$j9T$MsKPpS9seZjFQTddCHJ.g0$WeGelFn99zcnxhW.QdoIC.ZslQLxgBm4a7sQKdfBdC7";
+      openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEa53AGMV87VUquUKyQ2NlqmZiN7OVV438VLUe6hYJU2" ];
+    };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.proxmox = { 
-    isNormalUser = true; description = "Proxmox User"; 
-    hashedPassword = "$y$j9T$nuV.3iXRhPpKvTXd94fFh.$9g4xyPrktivR.wpwUxT4P69bs0NLLAe2sDWDIjus5c4";
-    extraGroups = [ "networkmanager" "wheel" ]; 
-    packages = with pkgs; [
-      neovim
-      htop
-      powertop
-      fastfetch
-    ];
-    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEa53AGMV87VUquUKyQ2NlqmZiN7OVV438VLUe6hYJU2" ];
+    proxmox = { 
+      isNormalUser = true; description = "Proxmox User"; # Primary non-root user in container
+      extraGroups = [ "networkmanager" "wheel" ]; 
+      packages = with pkgs; [
+        neovim
+        htop
+        powertop
+        fastfetch
+      ];
+      hashedPassword = "$y$j9T$nuV.3iXRhPpKvTXd94fFh.$9g4xyPrktivR.wpwUxT4P69bs0NLLAe2sDWDIjus5c4";
+      openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEa53AGMV87VUquUKyQ2NlqmZiN7OVV438VLUe6hYJU2" ];
+    };
   };
 
   
