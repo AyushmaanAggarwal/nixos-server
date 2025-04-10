@@ -14,7 +14,7 @@
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
-            (nixpkgs + "/nixos/modules/virtualisation/lxc-container.nix")
+            (nixpkgs + "/nixos/modules/virtualisation/proxmox-lxc.nix")
             ./hosts/backup.nix
             ./modules/general-configuration.nix
           ];
@@ -24,7 +24,7 @@
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
-            (nixpkgs + "/nixos/modules/virtualisation/lxc-container.nix")
+            (nixpkgs + "/nixos/modules/virtualisation/proxmox-lxc.nix")
             ./hosts/etebase.nix
             ./modules/general-configuration.nix
             ./modules/etesync.nix
@@ -35,7 +35,7 @@
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
-            (nixpkgs + "/nixos/modules/virtualisation/lxc-container.nix")
+            (nixpkgs + "/nixos/modules/virtualisation/proxmox-lxc.nix")
             ./hosts/adguard.nix
             ./modules/general-configuration.nix
             ./modules/adguard.nix
@@ -46,7 +46,7 @@
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
-            (nixpkgs + "/nixos/modules/virtualisation/lxc-container.nix")
+            (nixpkgs + "/nixos/modules/virtualisation/proxmox-lxc.nix")
             ./hosts/immich.nix
             ./modules/general-configuration.nix
             ./modules/immich.nix
@@ -57,7 +57,7 @@
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
-            (nixpkgs + "/nixos/modules/virtualisation/lxc-container.nix")
+            (nixpkgs + "/nixos/modules/virtualisation/proxmox-lxc.nix")
             ./hosts/nextcloud.nix
             ./modules/general-configuration.nix
             ./modules/nextcloud.nix
