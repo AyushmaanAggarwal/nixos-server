@@ -29,7 +29,7 @@
       auth_attempts = 5;
       block_auth_min = 600;
       dns = {
-        bind_hosts = [ "100.105.182.41" ];
+        bind_hosts = [ "127.0.0.1" ];
         upstream_dns = [
           "https://dns.quad9.net/dns-query"
           "tls://dns.quad9.net"
