@@ -20,10 +20,12 @@
     openFirewall = true;
     mutableSettings = false;
     settings = {
-      users = {
-        name = "Tycoon8048";
-        password = "$2b$05$z/jLE94TqTsCnQlEhvsyYONTvFqP.ejD4mWF3YfBk9eCccakbdHiu";
-      };
+      users = [
+        { 
+          name = "Tycoon8048";
+          password = "$2b$05$z/jLE94TqTsCnQlEhvsyYONTvFqP.ejD4mWF3YfBk9eCccakbdHiu";
+        }
+      ];
       auth_attempts = 5;
       block_auth_min = 600;
       dns = {
