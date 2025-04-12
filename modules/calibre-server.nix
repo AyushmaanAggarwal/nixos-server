@@ -1,10 +1,9 @@
 { config, pkgs, ... }:
 let 
-  user-database = ../databases/calibre/users.sqlite;
   userdb-path = "/var/lib/calibre-users";
 in
 {
-  # Need to generate file with `calibre-server --userdb /srv/calibre/users.sqlite --manage-users` 
+  # Need to generate file with `calibre-server --userdb users.sqlite --manage-users` 
   # if it doesn't exist already. Also copy usersdb into /var/lib/users.sqlite during installation
   system.activationScripts.script.text = ''
     mkdir ${userdb-path}
