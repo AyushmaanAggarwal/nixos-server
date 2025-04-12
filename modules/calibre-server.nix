@@ -12,7 +12,7 @@
       enable = true;
       mode = "basic";
       # Need to generate file with `calibre-server --userdb /srv/calibre/users.sqlite --manage-users` if it doesn't exist already
-      userDb = "../databases/calibre/users.sqlite"; 
+      userDb = ../databases/calibre/users.sqlite;
     };
     openFirewall = true;
     libraries = [ "/var/lib/calibre-server" ];
