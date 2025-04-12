@@ -3,12 +3,6 @@ let
   userdb-path = "/var/lib/calibre-users";
 in
 {
-
-  users.users.calibre-server = { 
-    isNormalUser = true; description = "Calibre Database User"; # Used as a minimal remote builder
-    hashedPassword = "$y$j9T$U4oMCo07HUSdkI5J7.veN0$M5IQppuGp0GoajLrg6glxPs9uiUJ5kpaFurh7SdmwH.";
-  };
-
   # Need to generate file with `calibre-server --userdb /srv/calibre/users.sqlite --manage-users` 
   # if it doesn't exist already. Also copy usersdb into /var/lib/users.sqlite during installation
   system.activationScripts.script.text = ''
