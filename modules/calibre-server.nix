@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let 
-  userdb-path = "/var/lib/calibre-users";
+  userdb-path = "/var/lib/calibre-server";
 in
 {
   # Need to generate file with `calibre-server --userdb users.sqlite --manage-users` 
@@ -24,7 +24,7 @@ in
       userDb = "${userdb-path}/users.sqlite";
     };
     openFirewall = false;
-    libraries = [ "/var/lib/calibre-server" ];
+    libraries = [ "/var/lib/calibre-server/users.sqlite" ];
   };
   # -------------------- 
   # Caddy SSL Cert
