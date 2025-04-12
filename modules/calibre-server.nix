@@ -1,21 +1,15 @@
 { config, pkgs, ... }:
 let 
-  user-database       = ../databases/calibre/users.sqlite;
-  user-database-path  = "/var/lib/calibre-users/users.sqlite";
-  calibre-library     = "/var/lib/calibre-server";
-  calibre-port = 8080;
+  user-database = ../databases/calibre/users.sqlite;
+  userdb-path = "/var/lib/calibre-users";
 in
 {
-  # Copy users.sqlite
-  systemd.calibreservice.serviceConfig = {
-    User = "calibre-server";
-    Group = "calibre-server";
-    StateDirectory = "calibre-users";
-    StateDirectoryMode = "0750";
-  };
-
+  # Need to generate file with `calibre-server --userdb /srv/calibre/users.sqlite --manage-users` 
+  # if it doesn't exist already. Also copy usersdb into /var/lib/users.sqlite during installation
   system.activationScripts.script.text = ''
-    cp --update=none ${user-database} ${user-database-path}
+    mkdir ${userdb-path}
+    chown calibre-server:calibre-server ${userdb-path}
+    chmod 755 ${userdb-path}
   '';
 
   # -------------------- 
@@ -23,16 +17,15 @@ in
   # -------------------- 
   services.calibre-server = {
     enable = true;
-    port = calibre-port;
+    port = 8080;
     host = "127.0.0.1";
     auth = {
       enable = true;
       mode = "basic";
-      # Need to generate file with `calibre-server --userdb /srv/calibre/users.sqlite --manage-users` if it doesn't exist already
-      userDb = user-database-path;
+      userDb = "${userdb-path}/users.sqlite";
     };
     openFirewall = false;
-    libraries = [ calibre-library ];
+    libraries = [ "/var/lib/calibre-server" ];
   };
   # -------------------- 
   # Caddy SSL Cert
@@ -40,9 +33,8 @@ in
   services.caddy = {
     enable = true;
     virtualHosts."calibre.tail590ac.ts.net".extraConfig = ''
-      reverse_proxy 127.0.0.1:${calibre-port}
+      reverse_proxy 127.0.0.1:8080
     '';
- 
   };
   services.tailscale.permitCertUid = "caddy";
 }
