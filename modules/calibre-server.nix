@@ -1,9 +1,9 @@
 { config, pkgs, ... }:
 let 
-  userdb-path = "/var/lib/calibre-server";
+  userdb-path = "/var/lib/calibre-users";
 in
 {
-  # Need to generate file with `calibre-server --userdb users.sqlite --manage-users` 
+  # Need to generate file with `calibre-server --userdb /srv/calibre/users.sqlite --manage-users` 
   # if it doesn't exist already. Also copy usersdb into /var/lib/users.sqlite during installation
   system.activationScripts.script.text = ''
     mkdir ${userdb-path}
@@ -24,7 +24,7 @@ in
       userDb = "${userdb-path}/users.sqlite";
     };
     openFirewall = false;
-    libraries = [ "/var/lib/calibre-server/users.sqlite" ];
+    libraries = [ "/var/lib/calibre-server" ];
   };
   # -------------------- 
   # Caddy SSL Cert
