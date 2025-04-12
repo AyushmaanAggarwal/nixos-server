@@ -64,6 +64,18 @@
           ];
         };
 
+        nixos-calibre = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            (nixpkgs + "/nixos/modules/virtualisation/proxmox-lxc.nix")
+            ./hosts/calibre.nix
+            ./modules/general-configuration.nix
+            ./modules/calibre-server.nix
+          ];
+        };
+
+
       };
     };
 }
