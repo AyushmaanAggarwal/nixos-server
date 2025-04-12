@@ -1,36 +1,38 @@
-# Applications
 { config, pkgs, ... }:
+let 
+  user-database       = ../databases/calibre/users.sqlite;
+  user-database-path  = "/var/lib/calibre-users/users.sqlite";
+  calibre-library     = "/var/lib/calibre-server";
+  calibre-port = 8080;
+in
 {
+  # Copy users.sqlite
+  systemd.calibreservice.serviceConfig = {
+    User = "calibre-server";
+    Group = "calibre-server";
+    StateDirectory = "calibre-users";
+    StateDirectoryMode = "0750";
+  };
+
+  system.activationScripts.script.text = ''
+    cp --update=none ${user-database} ${user-database-path}
+  '';
+
   # -------------------- 
   # Calibre Configuration
   # -------------------- 
   services.calibre-server = {
     enable = true;
-    port = 8080;
+    port = calibre-port;
     host = "127.0.0.1";
     auth = {
       enable = true;
       mode = "basic";
       # Need to generate file with `calibre-server --userdb /srv/calibre/users.sqlite --manage-users` if it doesn't exist already
-      userDb = ../databases/calibre/users.sqlite;
-    };
-    openFirewall = true;
-    libraries = [ "/var/lib/calibre-server" ];
-  };
-  services.calibre-web = {
-    enable = true;
-    listen = {
-      ip = "127.0.0.1";
-      port = 8100;
-    };
-    dataDir = "calibre-web";
-    options = {
-      enableBookUploading = true;
-      enableKepubify = false;
-      calibreLibrary = "/var/lib/calibre-server";
-      enableBookConversion = true;
+      userDb = user-database-path;
     };
     openFirewall = false;
+    libraries = [ calibre-library ];
   };
   # -------------------- 
   # Caddy SSL Cert
@@ -38,8 +40,7 @@
   services.caddy = {
     enable = true;
     virtualHosts."calibre.tail590ac.ts.net".extraConfig = ''
-      reverse_proxy /server* 127.0.0.1:8080
-      reverse_proxy /web* 127.0.0.1:8080
+      reverse_proxy 127.0.0.1:${calibre-port}
     '';
  
   };
