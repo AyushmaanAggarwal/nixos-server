@@ -1,5 +1,8 @@
 # Applications
 { config, pkgs, ... }:
+let
+  nextcloud-admin-pass = ../databases/nextcloud/secrets;
+in
 {
   # -------------------- 
   # Syncthing
@@ -7,17 +10,6 @@
   services.syncthing = {
     enable = true;
     openDefaultPorts = false;
-  };
-
-  # -------------------- 
-  # Nextcloud Password File
-  # -------------------- 
-  environment.etc."secrets/nextcloud-admin-pass" = {
-    # reminder to fill in secret below
-    text = ../databases/nextcloud/secrets;
-    user = "nextcloud";
-    group = "nextcloud";
-    mode = "0400";
   };
 
   # -------------------- 
@@ -38,7 +30,7 @@
     config = {
       dbtype = "pgsql";
       adminuser = "admin";
-      adminpassFile = "/etc/secrets/nextcloud-admin-pass";
+      adminpassFile = "${nextcloud-admin-pass}";
     };
   };
 
