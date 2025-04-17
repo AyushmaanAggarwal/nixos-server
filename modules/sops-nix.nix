@@ -8,7 +8,8 @@
   sops = {
     defaultSopsFile = ../secrets/${hostname}.yaml;
     defaultSopsFormat = "yaml";
-    age.keyFile = "/home/ayushmaan/.config/sops/age/keys.txt";
+    age.keyFile = "/var/lib/sops-nix/key.txt";
+    age.generateKey = true;
   };
 }
 

@@ -7,6 +7,9 @@
 
   sops.secrets.nextcloud_database = {
     owner = "nextcloud";
+    group = "nextcloud";
+    mode = "0400";
+    sopsFile = ../secrets/nextcloud.yaml;
   };
   # -------------------- 
   # Syncthing
