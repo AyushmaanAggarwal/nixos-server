@@ -23,9 +23,9 @@
 
         etebase = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs; hostname = "etebase"; };
           modules = [
-            ./hosts/proxmox.nix { hostname = "etebase"; }
+            ./hosts/proxmox.nix
             ./modules/general-configuration.nix
             ./modules/etesync.nix
           ];
