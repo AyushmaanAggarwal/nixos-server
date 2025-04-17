@@ -11,12 +11,11 @@
       system = "x86_64-linux";
     in { 
       nixosConfigurations = {
-        nixos-backup = nixpkgs.lib.nixosSystem {
+        backup = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs; hostname = "backup"; };
           modules = [
-            (nixpkgs + "/nixos/modules/virtualisation/proxmox-lxc.nix")
-            ./hosts/backup.nix
+            ./hosts/proxmox.nix
             ./modules/general-configuration.nix
           ];
         };
@@ -31,52 +30,46 @@
           ];
         };
 
-        nixos-adguard = nixpkgs.lib.nixosSystem {
+        adguard = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs; hostname = "adguard"; };
           modules = [
-            (nixpkgs + "/nixos/modules/virtualisation/proxmox-lxc.nix")
-            ./hosts/adguard.nix
+            ./hosts/proxmox.nix
             ./modules/general-configuration.nix
             ./modules/adguard.nix
           ];
         };
 
-        nixos-immich = nixpkgs.lib.nixosSystem {
+        immich = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs; hostname = "immich"; };
           modules = [
-            (nixpkgs + "/nixos/modules/virtualisation/proxmox-lxc.nix")
-            ./hosts/immich.nix
+            ./hosts/proxmox.nix
             ./modules/general-configuration.nix
             ./modules/immich.nix
           ];
         };
 
-        nixos-nextcloud = nixpkgs.lib.nixosSystem {
+        nextcloud = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs; hostname = "nextcloud"; };
           modules = [
-            (nixpkgs + "/nixos/modules/virtualisation/proxmox-lxc.nix")
-            ./hosts/nextcloud.nix
+            ./hosts/proxmox.nix
             ./modules/general-configuration.nix
             ./modules/nextcloud.nix
-            inputs.sops-nix.nixosModules.sops
+            ./modules/sops-nix.nix
           ];
         };
 
-        nixos-calibre = nixpkgs.lib.nixosSystem {
+        calibre = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs; hostname = "calibre"; };
           modules = [
-            (nixpkgs + "/nixos/modules/virtualisation/proxmox-lxc.nix")
-            ./hosts/calibre.nix
+            ./hosts/proxmox.nix
             ./modules/general-configuration.nix
             ./modules/calibre-server.nix
           ];
         };
-
-
       };
     };
 }

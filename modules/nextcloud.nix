@@ -4,6 +4,9 @@ let
   nextcloud-admin-pass = ../databases/nextcloud/secrets;
 in
 {
+  sops.secrets.nextcloud_database = {
+    owner = "nextcloud";
+  };
   # -------------------- 
   # Syncthing
   # -------------------- 
@@ -30,7 +33,7 @@ in
     config = {
       dbtype = "pgsql";
       adminuser = "admin";
-      adminpassFile = "${nextcloud-admin-pass}";
+      adminpassFile = config.sops.secrets.nextcloud_database.path;
     };
   };
 
