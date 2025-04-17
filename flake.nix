@@ -3,9 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = { self, nixpkgs }@inputs: 
+  outputs = { self, nixpkgs, ...}@inputs: 
     let
       system = "x86_64-linux";
     in { 
@@ -20,12 +21,11 @@
           ];
         };
 
-        nixos-etebase = nixpkgs.lib.nixosSystem {
+        etebase = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
-            (nixpkgs + "/nixos/modules/virtualisation/proxmox-lxc.nix")
-            ./hosts/etebase.nix
+            ./hosts/proxmox.nix { hostname = "etebase"; }
             ./modules/general-configuration.nix
             ./modules/etesync.nix
           ];
@@ -61,6 +61,7 @@
             ./hosts/nextcloud.nix
             ./modules/general-configuration.nix
             ./modules/nextcloud.nix
+            inputs.sops-nix.nixosModules.sops
           ];
         };
 
