@@ -6,7 +6,7 @@
   ];
 
   sops = {
-    defaultSopsFile = ./secrets/${hostname}.yaml;
+    defaultSopsFile = ../secrets/${hostname}.yaml;
     defaultSopsFormat = "yaml";
     age.keyFile = "/home/proxmox/.config/sops/age/keys.txt";
   };
