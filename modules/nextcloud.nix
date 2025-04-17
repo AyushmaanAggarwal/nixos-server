@@ -9,7 +9,7 @@
     owner = "nextcloud";
     group = "nextcloud";
     mode = "0400";
-    sopsFile = ../secrets/nextcloud.yaml;
+    sopsFile = ../secrets/nextcloud/secrets.yaml;
   };
   # -------------------- 
   # Syncthing
