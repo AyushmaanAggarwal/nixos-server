@@ -1,10 +1,7 @@
 # Applications
 { config, pkgs, ... }:
-let
-  nextcloud-admin-pass = ../databases/nextcloud/secrets;
-in
 {
-  sops.secrets.nextcloud_database = {
+  config.sops.secrets.nextcloud_database = {
     owner = "nextcloud";
   };
   # -------------------- 
