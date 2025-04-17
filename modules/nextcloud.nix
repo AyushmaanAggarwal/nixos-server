@@ -1,7 +1,11 @@
 # Applications
 { config, pkgs, ... }:
 {
-  config.sops.secrets.nextcloud_database = {
+  imports = [
+    ./sops-nix.nix
+  ];
+
+  sops.secrets.nextcloud_database = {
     owner = "nextcloud";
   };
   # -------------------- 

@@ -57,7 +57,6 @@
             ./hosts/proxmox.nix
             ./modules/general-configuration.nix
             ./modules/nextcloud.nix
-            ./modules/sops-nix.nix
           ];
         };
 
