@@ -2,7 +2,6 @@
 
 { 
   imports = [
-    (pkgs + "/nixos/modules/virtualisation/proxmox-lxc.nix")
   ];
   networking.hostName = hostname;
   time.timeZone = "America/New_York";
