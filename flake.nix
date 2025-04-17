@@ -25,7 +25,6 @@
           inherit system;
           specialArgs = { inherit inputs; hostname = "etebase"; };
           modules = [
-            (nixpkgs + "/nixos/modules/virtualisation/proxmox-lxc.nix")
             ./hosts/proxmox.nix
             ./modules/general-configuration.nix
             ./modules/etesync.nix
