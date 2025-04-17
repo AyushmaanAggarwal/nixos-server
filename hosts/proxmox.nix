@@ -1,8 +1,7 @@
-{ inputs, config, pkgs, hostname, ... }:
-
+{ inputs, config, pkgs, hostname, modulesPath, ... }:
 { 
   imports = [
-    (pkgs + "/virtualisation/proxmox-lxc.nix")
+    (modulesPath + "/virtualisation/proxmox-lxc.nix")
   ];
   networking.hostName = hostname;
   time.timeZone = "America/New_York";
