@@ -60,7 +60,7 @@
         filtering_enabled = true;
         parental_enabled = false;  # Parental control-based DNS requests filtering.
         safe_search = {
-          enabled = true;  # Enforcing "Safe search" option for search engines, when possible.
+          enabled = false;  # Enforcing "Safe search" option for search engines, when possible.
         };
       };
       statistics = {
